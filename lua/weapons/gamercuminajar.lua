@@ -43,12 +43,21 @@ function SWEP:Initialize()
 end
 
 if SERVER then
+	function Explode(owner,position)
+			local Damage = 1000
+			local BlastRadius = 250
+			util.BlastDamage(owner, owner, position, BlastRadius, Damage )
+	end
 	function SWEP:PrimaryAttack()
-        local speed = 10
-        local entity = ents.Create("gamershit")
-        entity:SetPos(self:GetOwner():GetShootPos()--[[:Add(self:GetOwner():EyeAngles():Forward()*100)]])
-        entity:SetModel("models/props_c17/oildrum001.mdl")
-        entity["owner"] = self:GetOwner()
-        entity["velocity"] = self:GetOwner():EyeAngles():Forward() * speed
+		local BulletTrace = util.TraceLine({
+				start = self:GetOwner():GetShootPos(),
+				endpos = self:GetOwner():GetShootPos() + self:GetOwner():EyeAngles():Forward():Mul(315*100),
+				filter=function(ent) if ent==self:GetOwner() then return false end end
+		})
+
+		if IsValid(BulletTrace.Entity) or BulletTrace.HitWorld then
+						Explode(self:GetOwner(),BulletTrace:HitPos)
+		end
+
 	end
 end
