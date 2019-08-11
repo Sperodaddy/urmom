@@ -46,10 +46,10 @@ if SERVER then
 	function SWEP:PrimaryAttack()
         local speed = 10
         local entity = ents.Create("gamershit")
-        entity:SetPos(SWEP:GetOwner():GetShootPos():Add(SWEP:GetOwner():EyeAngles():Forward()*100))
+        entity:SetPos(self:GetOwner():GetShootPos():Add(self:GetOwner():EyeAngles():Forward()*100))
         Bullet:SetModel("models/props_c17/oildrum001.mdl")
-        entity["owner"] = SWEP:GetOwner()
-        entity["velocity"] = SWEP:GetOwner():EyeAngles():Forward() * speed
+        entity["owner"] = self:GetOwner()
+        entity["velocity"] = self:GetOwner():EyeAngles():Forward() * speed
 	end
 end
 
