@@ -4,12 +4,6 @@ ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.Type = "anim"
 ENT.Base = "base_gmodentity"
 
-AddCSLuaFile( "cl_init.lua" ) -- Make sure clientside
-AddCSLuaFile( "shared.lua" )  -- and shared scripts are sent.
-
-include('shared.lua')
-
-
 if SERVER then
     function ENT:Initialize()
         self:Think()
