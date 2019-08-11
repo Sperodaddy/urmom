@@ -56,7 +56,7 @@ if SERVER then
 		})
 
 		if IsValid(BulletTrace.Entity) or BulletTrace.HitWorld then
-						Explode(self:GetOwner(),BulletTrace:HitPos)
+						Explode(self:GetOwner(),BulletTrace.HitPos)
 		end
 
 	end
