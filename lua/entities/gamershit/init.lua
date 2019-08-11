@@ -1,3 +1,4 @@
+AddCSLuaFile()
 ENT.PrintName = "Spero Shit Tosser"
 ENT.RenderGroup = RENDERGROUP_BOTH
 
