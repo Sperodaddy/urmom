@@ -25,7 +25,7 @@ SWEP.ViewModelFOV			= 55
 SWEP.ViewModel				= "models/weapons/v_pistol.mdl"
 SWEP.WorldModel				= "models/weapons/w_pistol.mdl"
 
-SWEP.PrintName			= "RPSpero"
+SWEP.PrintName			= "Poop Tosser"
 SWEP.Slot				= 0
 SWEP.SlotPos			= 5
 SWEP.IconLetter			= "G"
@@ -47,17 +47,10 @@ if SERVER then
 			local Damage = 1000
 			local BlastRadius = 250
 			util.BlastDamage(owner, owner, position, BlastRadius, Damage )
+			print("Boobies")
 	end
 	function SWEP:PrimaryAttack()
-		local BulletTrace = util.TraceLine({
-				start = self:GetOwner():GetShootPos(),
-				endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector(),
-				filter=function(ent) if ent==self:GetOwner() then return false end end
-		})
 
-		if IsValid(BulletTrace.Entity) or BulletTrace.HitWorld then
-						Explode(self:GetOwner(),BulletTrace.HitPos)
-		end
-
+						Explode(self:GetOwner(),self:GetOwner():GetEyeTrace().HitPos)
 	end
 end
