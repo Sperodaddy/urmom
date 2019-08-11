@@ -51,7 +51,7 @@ if SERVER then
 	function SWEP:PrimaryAttack()
 		local BulletTrace = util.TraceLine({
 				start = self:GetOwner():GetShootPos(),
-				endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector():Mul(31500),
+				endpos = self:GetOwner():GetShootPos() + self:GetOwner():GetAimVector(),
 				filter=function(ent) if ent==self:GetOwner() then return false end end
 		})
 
