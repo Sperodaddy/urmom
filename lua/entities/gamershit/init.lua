@@ -11,14 +11,7 @@ if SERVER then
     function ENT:Explode()
         local Damage = 1000
         local BlastRadius = 250
-
-        local EntsInsideTheBoomBoomZone = ent.FindInSphere(self:GetPos(),BlastRadius)
-
-        for Index, Value in pairs(EntsInsideTheBoomBoomZone) do
-            local Ratio = 1 - (self:GetPos():Distance(Value:GetPos()) / BlastRadius)
-            Value:TakeDamage(Damage * Ratio,self["owner"],self) --damwhat * whatmydude
-        end
-
+        util.BlastDamage(self, self["owner"], self:GetPos(), BlastRadius, Damage )
     end
     function ENT:Think() --https://wiki.garrysmod.com/page/util/TraceLine
         local velocity = self["velocity"]
